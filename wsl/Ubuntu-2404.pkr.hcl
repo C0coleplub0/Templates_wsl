@@ -20,7 +20,11 @@ packer {
     sources = ["source.docker.ubuntu"]
 
     provisioner "shell" {
-      script = "scripts/setup.sh"
+      scripts = [
+        "scripts/setup_basic.sh",
+        "scripts/setup_docker.sh",
+        "scripts/setup_kubectl.sh"
+      ]
     }
 
   post-processor "docker-save" {
