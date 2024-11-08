@@ -3,8 +3,8 @@ set -e
 
 # Setup timezone environment
 export TZ="Europe/Paris"
-echo $TZ >/etc/timezone
-cp /usr/share/zoneinfo/Europe/Paris /etc/localtime
+echo $TZ > /etc/timezone
+
 
 # Update package list
 apt update
