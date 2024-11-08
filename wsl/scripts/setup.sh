@@ -8,7 +8,7 @@ echo $TZ > /etc/timezone
 
 echo -e "Update package list\n"
 apt update
-apt upgrade -y
+
 
 # Install basic tools
 apt install --no-install-recommends -y \
