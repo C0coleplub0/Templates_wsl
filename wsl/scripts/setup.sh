@@ -23,8 +23,8 @@ apt install --no-install-recommends -y \
     vim \
     nano \
     zip \
-    unzip \
-    code
+    unzip 
+    
     
 
 echo -e "===> Install Docker without Docker Desktop \n"
