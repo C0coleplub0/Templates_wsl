@@ -4,5 +4,5 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - run: ./install_packer.sh
-      - run: cd wsl && packer build Ubuntu-2404.pkr.hcl
+      - run: bash ${GITHUB_WORKSPACE}/install_packer.sh
+      - run: bash cd ${GITHUB_WORKSPACE}/wsl && packer build Ubuntu-2404.pkr.hcl
