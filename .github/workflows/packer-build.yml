@@ -12,4 +12,4 @@ jobs:
       - name: Publish produced artifact
         uses: actions/upload-artifact@v4
         with:
-            path: DevOps-Ubuntu-2404.tar
+            path: ${GITHUB_WORKSPACE}/wsl/DevOps-Ubuntu-2404.tar
