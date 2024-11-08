@@ -24,7 +24,7 @@ packer {
     }
 
   post-processor "docker-save" {
-    path     = "DevOps-Ubuntu-2404-azcli-docker-kubectl.tar"
+    path     = "DevOps-Ubuntu-2404.tar"
   }
   
 }
