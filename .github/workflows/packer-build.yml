@@ -6,4 +6,4 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: bash ${GITHUB_WORKSPACE}/install_packer.sh
-      - run: bash cd ${GITHUB_WORKSPACE}/wsl && packer build Ubuntu-2404.pkr.hcl
+      - run: cd ${GITHUB_WORKSPACE}/wsl && packer build Ubuntu-2404.pkr.hcl
