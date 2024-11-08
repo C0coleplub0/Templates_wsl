@@ -5,6 +5,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: bash ${GITHUB_WORKSPACE}/install_packer.sh
-      - run: cd ${GITHUB_WORKSPACE}/wsl && packer init . && packer build Ubuntu-2404.pkr.hcl
-  
+      - name: Install Packer Utility
+        run: bash ${GITHUB_WORKSPACE}/install_packer.sh
+      - name: Run Packer build wsl template
+        run: cd ${GITHUB_WORKSPACE}/wsl && packer init . && packer build Ubuntu-2404.pkr.hcl
+      - name: Publish produced artifact
+        uses: actions/upload-artifact@v4
+        with:
+            path: DevOps-Ubuntu-2404-azcli-docker-kubectl.tar

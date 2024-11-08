@@ -6,7 +6,7 @@ export TZ="Europe/Paris"
 echo $TZ > /etc/timezone
 
 
-# Update package list
+echo -e "Update package list\n"
 apt update
 apt upgrade -y
 
@@ -25,36 +25,36 @@ apt install --no-install-recommends -y \
     unzip 
     
 
-# Install Docker without Docker Desktop
+echo -e "Install Docker without Docker Desktop \n"
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | tee /etc/apt/trusted.gpg.d/docker.asc
 echo "deb [arch=amd64] https://download.docker.com/linux/ubuntu noble stable" | tee /etc/apt/sources.list.d/docker.list
 apt update
 apt install docker-ce docker-ce-cli containerd.io
 
-# Configure Docker socket to run on WSl
+echo -e "Configure Docker socket to run on WSl \n"
 echo "{
   "hosts": ["unix:///mnt/wsl/shared-docker/docker.sock"]
 }" >> /etc/docker/daemon.json
 
 
-# Install kubectl
+echo -e "Install kubectl \n"
 curl -fsSLo /usr/share/keyrings/kubernetes-archive-keyring.gpg https://packages.cloud.google.com/apt/doc/apt-key.gpg
 echo "deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main" | tee /etc/apt/sources.list.d/kubernetes.list
 apt update
 apt install -y kubectl
 
-# Install HELM
+echo -e "Install HELM \n"
 curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
 
-# Install Azure CLI 
+echo -e "Install Azure CLI \n"
 curl -sL https://aka.ms/InstallAzureCLIDeb | bash
 
-# Install additional tools
+echo -e "Install additional tools \n"
 apt install -y \
     python3 \
     python3-pip \
     nodejs \
     npm
 
-# Clean up
+echo -e "Clean up \n"
 apt clean
