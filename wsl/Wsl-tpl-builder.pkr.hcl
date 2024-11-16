@@ -12,6 +12,11 @@ variable "docker_image" {
   default = null
 }
 
+variable "distribution" {
+  type    = string
+  default = null
+}
+
 variable "username" {
   type    = string
   default = null
@@ -24,8 +29,13 @@ variable "output_image_name" {
 
 
 source "docker" "image" {
-  image  = var.docker_image
-  commit = true
+  image       = var.docker_image
+  export_path = "output/${var.output_image_name}"
+
+  changes = [
+    "USER ${var.username}",
+    "WORKDIR /home/${var.username}"
+  ]
 }
 
 build {
@@ -38,7 +48,8 @@ build {
 
   provisioner "shell" {
     environment_vars = [
-      "USERNAME=${var.username}"
+      "USERNAME=${var.username}",
+      "DISTRIBUTION=${var.distribution}"
     ]
     scripts = [
       "scripts/setup_basic.sh",
@@ -48,9 +59,7 @@ build {
   }
 
 
-  post-processor "docker-save" {
-    path = "output/${var.output_image_name}"
-  }
+
 
 }
 

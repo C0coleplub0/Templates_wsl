@@ -11,29 +11,23 @@ echo "{
 }" >> /etc/docker/daemon.json
 
 # Configure .bashrc script to run Docker daemon
-cat << EOF >> ~/.bashrc
-  DOCKER_DISTRO="Ubuntu" 
-  DOCKER_DIR=/mnt/wsl/shared-docker
-  mkdir -pm o=,ug=rwx "$DOCKER_DIR"
-  DOCKER_SOCK="$DOCKER_DIR/docker.sock"
-  export DOCKER_HOST="unix://$DOCKER_SOCK"
-  if [ ! -S "$DOCKER_SOCK" ]; then
-      mkdir -pm o=,ug=rwx "$DOCKER_DIR"
-      chgrp docker "$DOCKER_DIR"
-      /mnt/c/Windows/System32/wsl.exe -d $DOCKER_DISTRO sh -c "nohup sudo -b dockerd < /dev/null > $DOCKER_DIR/dockerd.log 2>&1"
+cat << EOF >> /home/$USERNAME/.bashrc
+  mkdir -pm o=,ug=rwx "/mnt/wsl/shared-docker"
+  export DOCKER_HOST="unix:///mnt/wsl/shared-docker/docker.sock"
+  if [ ! -S "/mnt/wsl/shared-docker/docker.sock" ]; then
+      mkdir -pm o=,ug=rwx "/mnt/wsl/shared-docker"
+      chgrp docker "/mnt/wsl/shared-docker"
+      /mnt/c/Windows/System32/wsl.exe -d $DISTRIBUTION sh -c "nohup sudo -b dockerd < /dev/null > /mnt/wsl/shared-docker/dockerd.log 2>&1"
   fi
 EOF
 
 # Same config for .zshrc script to run Docker daemon
-cat << EOF >> ~/.zshrc
-  DOCKER_DISTRO="Ubuntu" 
-  DOCKER_DIR=/mnt/wsl/shared-docker
-  mkdir -pm o=,ug=rwx "$DOCKER_DIR"
-  DOCKER_SOCK="$DOCKER_DIR/docker.sock"
-  export DOCKER_HOST="unix://$DOCKER_SOCK"
-  if [ ! -S "$DOCKER_SOCK" ]; then
-      mkdir -pm o=,ug=rwx "$DOCKER_DIR"
-      chgrp docker "$DOCKER_DIR"
-      /mnt/c/Windows/System32/wsl.exe -d $DOCKER_DISTRO sh -c "nohup sudo -b dockerd < /dev/null > $DOCKER_DIR/dockerd.log 2>&1"
+cat << EOF >> /home/$USERNAME/.zshrc
+  mkdir -pm o=,ug=rwx "/mnt/wsl/shared-docker"
+  export DOCKER_HOST="unix:///mnt/wsl/shared-docker/docker.sock"
+  if [ ! -S "/mnt/wsl/shared-docker/docker.sock" ]; then
+      mkdir -pm o=,ug=rwx "/mnt/wsl/shared-docker"
+      chgrp docker "/mnt/wsl/shared-docker"
+      /mnt/c/Windows/System32/wsl.exe -d $DISTRIBUTION sh -c "nohup sudo -b dockerd < /dev/null > /mnt/wsl/shared-docker/dockerd.log 2>&1"
   fi
 EOF

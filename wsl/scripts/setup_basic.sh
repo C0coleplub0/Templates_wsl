@@ -26,6 +26,12 @@ apt install --no-install-recommends -y \
     unzip \
     zsh 
 
+# echo -e "\n===> Install VSCode \o/\n"
+
+# wget -q https://packages.microsoft.com/keys/microsoft.asc -O- | apt-key add -
+# add-apt-repository -y "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main"
+# apt update -y && apt install code -y
+
 echo -e "\n===> Install Oh My Zsh ! \n" 
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
@@ -40,6 +46,7 @@ else
   usermod -aG sudo "$USERNAME"
   groupadd docker
   usermod -aG docker "$USERNAME"
+  chsh -s /usr/bin/zsh $USERNAME
 fi
 
 echo -e "\n===> Install additional tools \n"
