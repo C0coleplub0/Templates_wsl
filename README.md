@@ -8,17 +8,17 @@ Thoses templates are builded to contains and pre configure usefull tools for Dev
 
 |Product              | installed by default  | Upcoming link                                         |
 |---------------------|:---------------------:|-------------------------------------------------------|
-| Docker🐳            | yes                   | [Documentation](https://docs.docker.com/get-started/) |
+| Docker 🐳           | yes                   | [Documentation](https://docs.docker.com/get-started/) |
 | Visual Studio Code  | yes                   |                                                       |
 | zsh                 | yes                   |                                                       |
 | OhMyZsh             | yes                   | [Github repo](https://docs.docker.com/get-started/)   |
 | Kubectl             | yes                   |                                                       |
-| K9s🐶               | yes                   | [Github repo](https://github.com/derailed/k9s)        |
+| K9s 🐶              | yes                   | [Github repo](https://github.com/derailed/k9s)        |
 | helm                | yes                   |                                                       |
 | Azure cli           | no                    |                                                       |
 | gcloud cli          | no                    |                                                       |
 | git                 | yes                   |                                                       |
-| Python3🐍           | yes                   |                                                       |
+| Python3 🐍          | yes                   |                                                       |
 
 
 ## Local Build prerequisites
