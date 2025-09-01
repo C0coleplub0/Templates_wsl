@@ -13,3 +13,67 @@
 #         uses: actions/upload-artifact@v4
 #         with:
 #             path: "${GITHUB_WORKSPACE}/wsl/*.tar"
+
+
+name: Build and Release WSL Image
+
+on:
+  push:
+    branches:
+      - main
+  # Optional: only build on version tags
+  # push:
+  #   tags:
+  #     - 'v*'
+
+jobs:
+  build-packer:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Packer
+        uses: hashicorp/setup-packer@v3
+        with:
+          packer_version: latest
+
+      - name: Initialize Packer
+        run: packer init wls/Wsl-tpl-builder.pkr.hcl
+
+      - name: Validate Packer template
+        run: packer validate wls/Wsl-tpl-builder.pkr.hcl
+
+      - name: Build Packer image
+        run: packer build -force wls/Wsl-tpl-builder.pkr.hcl
+
+      # Assuming packer produces an archive like output/wsl-template.tar.gz
+      - name: Rename artifact
+        run: |
+          mkdir artifacts
+          cp output/*.tar.gz artifacts/wsl-template-${{ github.sha }}.tar.gz
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: wsl-template
+          path: artifacts/
+
+  release:
+    needs: build-packer
+    runs-on: ubuntu-latest
+    if: startsWith(github.ref, 'refs/tags/') # only on tags
+
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: wsl-template
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: wsl-template-*.tar.gz
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
