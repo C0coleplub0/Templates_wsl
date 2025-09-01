@@ -48,7 +48,7 @@ build {
 
   provisioner "shell" {
     environment_vars = ["USERNAME=${var.username}", "DISTRIBUTION=${var.distribution}"]
-    scripts = ["scripts/setup_basic.sh", "scripts/setup_docker.sh", "scripts/setup_kubectl.sh"]
+    scripts = ["wsl/scripts/setup_basic.sh", "wsl/scripts/setup_docker.sh", "wsl/scripts/setup_kubectl.sh"]
   }
 
 
