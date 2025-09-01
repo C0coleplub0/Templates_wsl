@@ -34,6 +34,18 @@ wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > mi
 install -D -o root -g root -m 644 microsoft.gpg /usr/share/keyrings/microsoft.gpg
 rm -f microsoft.gpg
 apt install apt-transport-https -y 
+#!/usr/bin/env bash
+set -euo pipefail
+
+cat << 'EOF' | tee /etc/apt/sources.list.d/vscode.sources > /dev/null
+Types: deb
+URIs: https://packages.microsoft.com/repos/code
+Suites: stable
+Components: main
+Architectures: amd64,arm64,armhf
+Signed-By: /usr/share/keyrings/microsoft.gpg
+EOF
+
 apt update -y 
 apt install code -y
 
