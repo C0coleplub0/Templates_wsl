@@ -21,10 +21,10 @@ on:
   push:
     branches:
       - main
+    tags:
+      - 'v*'
   # Optional: only build on version tags
   # push:
-  #   tags:
-  #     - 'v*'
 
 jobs:
   build-packer:
