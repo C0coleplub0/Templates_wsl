@@ -40,13 +40,13 @@ jobs:
           packer_version: latest
 
       - name: Initialize Packer
-        run: packer init wls/Wsl-tpl-builder.pkr.hcl
+        run: packer init wsl/Wsl-tpl-builder.pkr.hcl
 
       - name: Validate Packer template
-        run: packer validate wls/Wsl-tpl-builder.pkr.hcl
+        run: packer validate wsl/Wsl-tpl-builder.pkr.hcl
 
       - name: Build Packer image
-        run: packer build -force wls/Wsl-tpl-builder.pkr.hcl
+        run: packer build -force wsl/Wsl-tpl-builder.pkr.hcl
 
       # Assuming packer produces an archive like output/wsl-template.tar.gz
       - name: Rename artifact
