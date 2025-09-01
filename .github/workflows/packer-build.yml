@@ -42,16 +42,6 @@ jobs:
           name: wsl-template
           path: artifacts/
 
-  release:
-    needs: build-packer
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Download artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: wsl-template
-
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
