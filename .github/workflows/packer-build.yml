@@ -48,7 +48,6 @@ jobs:
       - name: Build Packer image
         run: packer build -force wsl/Wsl-tpl-builder.pkr.hcl
 
-      # Assuming packer produces an archive like output/wsl-template.tar.gz
       - name: Rename artifact
         run: |
           mkdir artifacts
