@@ -2,8 +2,6 @@ name: Build and Release WSL Image
 
 on:
   push:
-    branches:
-      - main
     tags:
       - 'v*'
   
@@ -55,6 +53,8 @@ jobs:
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
+          tag_name: ${{ github.ref_name }} 
+          name: Release ${{ github.ref_name }}
           files: artifacts/*
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
