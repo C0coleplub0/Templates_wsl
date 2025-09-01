@@ -31,11 +31,11 @@ apt install --no-install-recommends -y \
 echo -e "\n===> Install VSCode \o/\n"
 
 wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
-sudo install -D -o root -g root -m 644 microsoft.gpg /usr/share/keyrings/microsoft.gpg
+install -D -o root -g root -m 644 microsoft.gpg /usr/share/keyrings/microsoft.gpg
 rm -f microsoft.gpg
-sudo apt install apt-transport-https -y 
-sudo apt update -y 
-sudo apt install code -y # or code-insiders
+apt install apt-transport-https -y 
+apt update -y 
+apt install code -y
 
 
 echo -e "\n===> Install Oh My Zsh ! \n" 
