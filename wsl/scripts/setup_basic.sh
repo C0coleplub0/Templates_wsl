@@ -24,13 +24,19 @@ apt install --no-install-recommends -y \
     nano \
     zip \
     unzip \
+    wget \
+    gpg \
     zsh 
 
-# echo -e "\n===> Install VSCode \o/\n"
+echo -e "\n===> Install VSCode \o/\n"
 
-# wget -q https://packages.microsoft.com/keys/microsoft.asc -O- | apt-key add -
-# add-apt-repository -y "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main"
-# apt update -y && apt install code -y
+wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
+sudo install -D -o root -g root -m 644 microsoft.gpg /usr/share/keyrings/microsoft.gpg
+rm -f microsoft.gpg
+sudo apt install apt-transport-https -y 
+sudo apt update -y 
+sudo apt install code -y # or code-insiders
+
 
 echo -e "\n===> Install Oh My Zsh ! \n" 
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
