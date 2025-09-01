@@ -51,6 +51,7 @@ jobs:
       - name: Rename artifact
         run: |
           mkdir artifacts
+          gzip output/DevOps-ubuntu.tar output/DevOps-ubuntu.tar.gz
           cp output/DevOps-ubuntu.tar.gz artifacts/wsl-template-${{ github.sha }}.tar.gz
 
       - name: Upload artifact
