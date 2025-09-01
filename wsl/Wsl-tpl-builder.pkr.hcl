@@ -9,22 +9,22 @@ packer {
 
 variable "docker_image" {
   type    = string
-  default = null
+  default = "ubuntu:24.04"
 }
 
 variable "distribution" {
   type    = string
-  default = null
+  default = "Ubuntu"
 }
 
 variable "username" {
   type    = string
-  default = null
+  default = "coco"
 }
 
 variable "output_image_name" {
   type    = string
-  default = null
+  default = "DevOps-ubuntu.tar"
 }
 
 
