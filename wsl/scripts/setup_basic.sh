@@ -26,7 +26,10 @@ apt install --no-install-recommends -y \
     unzip \
     wget \
     gpg \
+    neofetch \
     zsh 
+
+echo "neofetch" >> /etc/profile
 
 echo -e "\n===> Install VSCode \o/\n"
 
@@ -70,9 +73,7 @@ fi
 echo -e "\n===> Install additional tools \n"
 apt install -y \
   python3 \
-  python3-pip \
-  nodejs \
-  npm
+  python3-pip 
 
 echo -e "\n===> Clean up \n"
 apt clean

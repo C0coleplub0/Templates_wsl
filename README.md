@@ -20,33 +20,25 @@ Thoses templates are builded to contains and pre configure usefull tools for Dev
 | git                 | yes                   |                                                       |
 | Python3 🐍          | yes                   |                                                       |
 
-
 ## Local Build prerequisites
 
 Run the `install_packer.sh` script to install HashiCorp Packer on Debian base Linux. (Works on Ubuntu)
 
 ### Define your own variables
 
-The file `*.auto.pkrvars.hcl` can help you to setup some features as username or even source docker image. 
+The file `*.auto.pkrvars.hcl` can help you to setup some features as username or even source docker image.
 Feel free to edit it as you need
 
 ### Customize settings
 
-You can go through `wsl/scripts/setup.basic.sh` to override the TimeZone settings or the default shell. 
+You can go through `wsl/scripts/setup.basic.sh` to override the TimeZone settings or the default shell.
 
 If you don't, zsh will be the default shell and Europe/Paris the default timezone
 
-## Building images 
+## Building image locally
 
 Run `packer build .` in the wsl directory and that's it.
 
 ## Import .tar image
 
-Run `wsl --import DevOps-ubuntu E:\DevOps-ubuntu .\DevOps-ubuntu.tar`
-
-
-## WIP
-
-The workflow does not work for now. 
-
-Later it will create and publish the tar packages
+Run `wsl --import NameOfTheDistro E:\LocationOfTheDistro .\DevOps-ubuntu.tar`
