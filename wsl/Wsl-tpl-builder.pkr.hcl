@@ -59,25 +59,17 @@ build {
   provisioner "shell" {
     inline = ["echo Running build on ${var.docker_image} Docker image"]
   }
-
-  provisioner "shell" {
-    scripts = ["wsl/scripts/setup_docker.sh"]
-    when    = "${var.install_docker ? "pre-provision" : "never"}"
-  }
-
-  provisioner "shell" {
-    scripts = ["wsl/scripts/setup_azcli.sh"]
-    when    = "${var.install_azcli ? "pre-provision" : "never"}"
-  }
-
-  provisioner "shell" {
-    scripts = ["wsl/scripts/setup_gcloud.sh"]
-    when    = "${var.install_gcloud ? "pre-provision" : "never"}"
-  }
-
+  
   provisioner "shell" {
     environment_vars = ["USERNAME=${var.username}", "DISTRIBUTION=${var.distribution}"]
-    scripts = ["wsl/scripts/setup_basic.sh", "wsl/scripts/setup_kubectl.sh"]
+    scripts = concat(
+      ["${path.root}/scripts/setup_basic.sh"],
+      ["${path.root}/scripts/setup_kubectl.sh"],
+      # scripts optionnels
+      var.install_docker  ? ["${path.root}/scripts/setup_docker.sh"]  : [],
+      var.install_azcli ? ["${path.root}/scripts/setup_azcli.sh"] : [],
+      var.install_gcloud  ? ["${path.root}/scripts/setup_gcloud.sh"]  : []
+    )
   }
 
 }
