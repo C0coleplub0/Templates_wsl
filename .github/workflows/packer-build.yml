@@ -33,7 +33,8 @@ jobs:
       - name: Rename artifact
         run: |
           mkdir artifacts
-          cp output/DevOps-ubuntu.tar artifacts/DevOps-ubuntu.tar
+          gzip output/DevOps-ubuntu.tar output/DevOps-ubuntu.tar.gz
+          cp output/DevOps-ubuntu.tar.gz artifacts/DevOps-ubuntu.tar.gz
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
@@ -46,6 +47,6 @@ jobs:
         with:
           tag_name: ${{ github.ref_name }} 
           name: Release ${{ github.ref_name }}
-          files: artifacts/DevOps-ubuntu.tar
+          files: artifacts/DevOps-ubuntu.tar.gz
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
