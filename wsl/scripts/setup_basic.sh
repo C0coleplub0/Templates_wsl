@@ -68,6 +68,10 @@ else
   groupadd docker
   usermod -aG docker "$USERNAME"
   chsh -s /usr/bin/zsh $USERNAME
+  cat <<EOF > /etc/wsl.conf
+  [user]
+  default=$USERNAME
+EOF
 fi
 
 echo -e "\n===> Install additional tools \n"
